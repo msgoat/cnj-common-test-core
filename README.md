@@ -8,7 +8,7 @@ although using the [LOG4J 2 SLF4J binding](https://logging.apache.org/log4j/2.0/
 
 ## Status
 
-![Build status](https://drone.cloudtrain.aws.msgoat.eu/api/badges/msgoat/cnj-common-test/status.svg)
+![Build status](https://drone.cloudtrain.aws.msgoat.eu/api/badges/msgoat/cnj-common-test-core/status.svg)
 
 ## Release information
 
