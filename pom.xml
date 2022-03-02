@@ -8,6 +8,11 @@
     <packaging>jar</packaging>
     <description>Common classes for unit, component or system tests without any dependencies on Enterprise Java APIs</description>
     <properties>
+        <!-- new Maven version management -->
+        <revision>0.9.0</revision>
+        <sha1></sha1>
+        <changelist></changelist>
+        <!-- common properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
@@ -35,24 +40,9 @@
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
         <!-- pinning versions of application type specific maven plugins -->
         <!-- pinning versions of cloud native specific maven plugins -->
-        <!-- new Maven version management -->
-        <revision>0.8.0</revision>
-        <sha1></sha1>
-        <changelist></changelist>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-jdk14</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
-            <!-- Test runtime dependencies -->
             <!-- JUnit 5.x -->
             <dependency>
                 <groupId>org.junit</groupId>
@@ -78,6 +68,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -98,8 +89,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.17.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
