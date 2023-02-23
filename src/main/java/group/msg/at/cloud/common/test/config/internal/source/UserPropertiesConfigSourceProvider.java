@@ -66,7 +66,7 @@ public final class UserPropertiesConfigSourceProvider implements ConfigSourcePro
                 Properties userProps = loadPropertiesFromPath(userPropsPath);
                 result = new PropertiesConfigSource(new HashMap(userProps), userPropsPath.toString(), DEFAULT_CONFIG_ORDINAL);
             } catch (IOException ex) {
-                throw new IllegalStateException(String.format("problem while loading user properties [%s] located at user home [%s]", userPropsPath.toString(), userHomeDir), ex);
+                throw new IllegalStateException(String.format("problem while loading user properties [%s] located at user home [%s]", userPropsPath, userHomeDir), ex);
             }
         }
         return Optional.ofNullable(result);
@@ -82,7 +82,7 @@ public final class UserPropertiesConfigSourceProvider implements ConfigSourcePro
                     Properties userProps = loadPropertiesFromPath(userPropsPath);
                     result = new PropertiesConfigSource(new HashMap(userProps), userPropsPath.toString(), DEFAULT_CONFIG_ORDINAL);
                 } catch (IOException ex) {
-                    throw new IllegalStateException(String.format("problem while loading user properties [%s] defined by env var [%s]", userPropsPath.toString(), USER_PROPERTIES_ENVVAR_NAME), ex);
+                    throw new IllegalStateException(String.format("problem while loading user properties [%s] defined by env var [%s]", userPropsPath, USER_PROPERTIES_ENVVAR_NAME), ex);
                 }
             }
         }

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2023-02-23
+### Changed
+- upgraded to Java 17
+- improved readiness probe checks with new peek state and new state model
+
 ## [0.8.0] - 2022-01-28
 ### Added
 ### Changed

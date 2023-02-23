@@ -1,6 +1,7 @@
 package group.msg.at.cloud.common.test.rest.internal;
 
 import group.msg.at.cloud.common.test.config.CommonTestConfig;
+import io.restassured.RestAssured;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +15,7 @@ public final class ReadinessProbeImpl implements ReadinessProbe {
 
     private final CommonTestConfig config;
 
-    private ReadinessProbeState state = new InitialReadinessProbeState();
+    private ReadinessProbeState state = new PeekReadinessProbeState();
 
     public ReadinessProbeImpl(CommonTestConfig config) {
         this.config = config;
@@ -28,12 +29,16 @@ public final class ReadinessProbeImpl implements ReadinessProbe {
     @Override
     public void ensureApplicationReadiness() {
         if (!config.isSkipReadinessProbe()) {
-            this.state = this.state.check(config);
-            if (FailedReadinessProbeState.class.isAssignableFrom(this.state.getClass())) {
-                throw new IllegalStateException(String.format("failed to ensure readiness of application at [%s]", config.getTargetRoute()));
+            ReadinessProbeState nextState = this.state.check(this.config);
+            while (nextState != null) {
+                this.state = nextState;
+                nextState = this.state.check(this.config);
+            }
+            if (this.state.hasFailed()) {
+                throw new IllegalStateException(String.format("failed to ensure readiness of application at [%s]", RestAssured.baseURI));
             }
         } else {
-            logger.warn(String.format("assuming application at [%s] to be ready without checking readiness probe", config.getTargetRoute()));
+            logger.warn(String.format("assuming application at [%s] to be ready without checking readiness probe", RestAssured.baseURI));
         }
     }
 }

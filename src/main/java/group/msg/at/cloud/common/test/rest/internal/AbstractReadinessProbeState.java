@@ -4,6 +4,9 @@ import group.msg.at.cloud.common.test.config.CommonTestConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Common abstract base class for all {@code ReadinessProbeState}s.
+ */
 abstract class AbstractReadinessProbeState implements ReadinessProbeState {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());

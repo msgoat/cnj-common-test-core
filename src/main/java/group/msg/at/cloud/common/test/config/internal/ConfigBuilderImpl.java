@@ -96,9 +96,7 @@ public class ConfigBuilderImpl implements ConfigBuilder {
 
     @Override
     public ConfigBuilder withSources(ConfigSource... configSources) {
-        for (ConfigSource source : configSources) {
-            this.sources.add(source);
-        }
+        Collections.addAll(this.sources, configSources);
         return this;
     }
 
@@ -137,8 +135,7 @@ public class ConfigBuilderImpl implements ConfigBuilder {
         }
 
         for (Type type : clazz.getGenericInterfaces()) {
-            if (type instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) type;
+            if (type instanceof ParameterizedType pt) {
                 if (pt.getRawType().equals(Converter.class)) {
                     Type[] typeArguments = pt.getActualTypeArguments();
                     if (typeArguments.length != 1) {
