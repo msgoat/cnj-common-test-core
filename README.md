@@ -25,21 +25,21 @@ __Prerequisites:__
 * expects a system property __test.target.route__ or an environment variable __TEST_TARGET_ROUTE__to be set to the base URL of the REST endpoint to test.
 * expects a properties configuration file __META-INF/test-config.properties__ providing the following properties:
 
-| Property Name | Type | Mandatory? | Description |
-| --- | --- | --- | --- |
-| test.oidc.skip | bool |  | true, if OpenID Connect authentication should be skipped and test.oidc.* properties are not specified (default: false) |
-| test.oidc.client.clientId | string | x | OpenID client ID; must match the unique identifier of a registered client on an OpenID Connect provider |
-| test.oidc.client.clientSecret | string | x | OpenID client credentials; must match the credentials of a registered client on an OpenID Connect provider |
-| test.oidc.client.accessTokenUri | string | x | Target URI of the token endpoint provided by an OpenID Connect provider |
-| test.oidc.client.user | string | x | test user name |
-| test.oidc.client.password | string | x | test user credentials |
-| test.target.route | string | x | target route URL to the application under test (just scheme + hostname + port without path) |
-| test.target.readinessProbe.skip | bool |  | true, if application should not be checked for readiness; otherwise false (default: false) |
-| test.target.readinessProbe.path | string |   | path of the readiness probe endpoint (default: /api/v1/probes/readiness) |
-| test.target.readinessProbe.initialDelaySeconds | int |    | number of seconds to wait before checking readiness probe (default: 10) |
-| test.target.readinessProbe.failureThreshold | int |    | number of retries before an application is assumed to be unhealthy (default: 3) |
-| test.target.readinessProbe.periodSeconds | int |   | number of seconds to wait between retries (default: 10) |
-| test.target.readinessProbe.timeoutSeconds | int |    | number of seconds a readiness check may last (default: 1) |
+| Property Name                                  | Environment Variable Name                         | Type   | Mandatory? | Description                                                                                                            |
+|------------------------------------------------|---------------------------------------------------|--------|------------|------------------------------------------------------------------------------------------------------------------------|
+| test.oidc.skip                                 | TEST_OIDC_SKIP                                    | bool   |            | true, if OpenID Connect authentication should be skipped and test.oidc.* properties are not specified (default: false) |
+| test.oidc.client.clientId                      | TEST_OIDC_CLIENT_CLIENT_ID                        | string | x          | OpenID client ID; must match the unique identifier of a registered client on an OpenID Connect provider                |
+| test.oidc.client.clientSecret                  | TEST_OIDC_CLIENT_CLIENT_SECRET                    | string | x          | OpenID client credentials; must match the credentials of a registered client on an OpenID Connect provider             |
+| test.oidc.client.accessTokenUri                | TEST_OIDC_CLIENT_ACCESS_TOKEN_URI                 | string | x          | Target URI of the token endpoint provided by an OpenID Connect provider                                                |
+| test.oidc.client.user                          | TEST_OIDC_CLIENT_USER                             | string | x          | test user name                                                                                                         |
+| test.oidc.client.password                      | TEST_OIDC_CLIENT_PASSWORD                         | string | x          | test user credentials                                                                                                  |
+| test.target.route                              | TEST_TARGET_ROUTE                                 | string | x          | target route URL to the application under test (just scheme + hostname + port without path)                            |
+| test.target.readinessProbe.skip                | TEST_TARGET_READINESS_PROBE_SKIP                  | bool   |            | true, if application should not be checked for readiness; otherwise false (default: false)                             |
+| test.target.readinessProbe.path                | TEST_TARGET_READINESS_PROBE_PATH                  | string |            | path of the readiness probe endpoint (default: /api/v1/probes/readiness)                                               |
+| test.target.readinessProbe.initialDelaySeconds | TEST_TARGET_READINESS_PROBE_INITIAL_DELAY_SECONDS | int    |            | number of seconds to wait before checking readiness probe (default: 10)                                                |
+| test.target.readinessProbe.failureThreshold    | TEST_TARGET_READINESS_PROBE_FAILURE_THRESHOLD     | int    |            | number of retries before an application is assumed to be unhealthy (default: 3)                                        |
+| test.target.readinessProbe.periodSeconds       | TEST_TARGET_READINESS_PROBE_PERIOD_SECONDS        | int    |            | number of seconds to wait between retries (default: 10)                                                                |
+| test.target.readinessProbe.timeoutSeconds      | TEST_TARGET_READINESS_PROBE_TIMEOUT_SECONDS       | int    |            | number of seconds a readiness check may last (default: 1)                                                              |
 
 * __OR__ expects system properties with mentioned property names
 * __OR__ expects environment variable with matching names: property names are matched to environment names by converting everything to uppercase and replacing dots with underscores (i.e. test.oidc.client.clientId becomes TEST_OIDC_CLIENT_CLIENTID).
