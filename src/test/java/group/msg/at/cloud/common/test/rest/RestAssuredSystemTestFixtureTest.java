@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  */
 public class RestAssuredSystemTestFixtureTest {
 
-    private RestAssuredSystemTestFixture underTest = new RestAssuredSystemTestFixture();
+    private final RestAssuredSystemTestFixture underTest = new RestAssuredSystemTestFixture();
 
     @Test
     public void checkIfFixtureWorks() {
