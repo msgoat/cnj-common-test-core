@@ -66,8 +66,8 @@ public class RestAssuredSystemTestFixture {
         augmentedLogConfig.enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.config = RestAssured.config().sslConfig(SSLConfig.sslConfig().relaxedHTTPSValidation()).logConfig(augmentedLogConfig);
         RestAssured.baseURI = config.getTargetRoute();
-        ensureTokens();
         ensureApplicationReadiness();
+        ensureTokens();
     }
 
     /**
