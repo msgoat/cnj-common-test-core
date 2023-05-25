@@ -122,15 +122,24 @@ public class RestAssuredSystemTestFixture {
 
     private void ensureTokens() {
         if (this.accessToken == null && !this.config.isSkipOpenIdConnectLogin()) {
-            ExtractableResponse response = RestAssured.given()
-                    .param("scope", "openid microprofile-jwt")
-                    .param("grant_type", "password")
-                    .param("username", this.config.getOidcUserName())
-                    .param("password", this.config.getOidcPassword())
-                    .param("client_id", this.config.getOidcClientId())
-                    .param("client_secret", this.config.getOidcClientSecret())
-                    .when().post(this.config.getOidcAccessTokenUri()).then().contentType
-                            (ContentType.JSON).extract();
+            ExtractableResponse response = null;
+            try {
+                response = RestAssured.given()
+                        .param("scope", "openid microprofile-jwt")
+                        .param("grant_type", "password")
+                        .param("username", this.config.getOidcUserName())
+                        .param("password", this.config.getOidcPassword())
+                        .param("client_id", this.config.getOidcClientId())
+                        .param("client_secret", this.config.getOidcClientSecret())
+                        .when()
+                        .post(this.config.getOidcAccessTokenUri())
+                        .then()
+                        .contentType(ContentType.JSON)
+                        .statusCode(200)
+                        .extract();
+            } catch (Exception | AssertionError ex) {
+                throw new IllegalStateException(String.format("failed to get tokens from [%s]: %s", this.config.getOidcAccessTokenUri(), ex.getMessage()));
+            }
             this.accessToken = response.jsonPath().getString("access_token");
             this.idToken = response.jsonPath().getString("id_token");
             if (this.accessToken == null) {
