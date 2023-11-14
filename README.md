@@ -2,7 +2,7 @@
 
 Provides common test classes to run system tests on REST APIs using RestAssured.
 
-__Note:__ Logging is done using [SLF4J](http://www.slf4j.org/index.html). All classes provided by this module do not depend on any specific SL4FJ binding, 
+__Note:__ Logging is done using [SLF4J 2](http://www.slf4j.org/index.html). All classes provided by this module do not depend on any specific SL4FJ binding, 
 although using the [LOG4J 2 SLF4J binding](https://logging.apache.org/log4j/2.0/log4j-slf4j-impl/index.html) is recommended for your test classes. A sample LOG4J 2 configuration can be found in 
 [log4j2-test.xml](src/test/resources/log4j2-test.xml) 
 
