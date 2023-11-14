@@ -45,8 +45,8 @@
         <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
         <maven.surefire.plugin.version>3.2.1</maven.surefire.plugin.version>
         <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
-        <!-- pinning versions of application type specific maven plugins -->
-        <!-- pinning versions of cloud native specific maven plugins -->
+        <!-- quality assurance properties -->
+        <sonar.host.url>https://sonarqube.cloudtrain.aws.msgoat.eu</sonar.host.url>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -172,6 +172,22 @@
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>${maven.flatten.plugin.version}</version>
                 </plugin>
+                <!-- quality assurance plugins -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${maven.jacoco.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${maven.sonar.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${maven.owasp.plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -234,6 +250,39 @@
                         <goals>
                             <goal>clean</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- quality assurance plugins -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>run OWASP dependency check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <formats>
+                        <format>HTML</format>
+                        <format>JSON</format>
+                    </formats>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>run sonarqube</id>
+                        <goals>
+                            <goal>sonar</goal>
+                        </goals>
+                        <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
