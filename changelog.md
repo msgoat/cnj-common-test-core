@@ -4,7 +4,16 @@ All notable changes to `cnj-common-test-core` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Unreleased] - YYYY-MM-DD
+### Added
+### Changed
+### Fixed
+
+## [1.2.0] - 2023-11-14
+### Changed
+- upgraded all dependencies
+- upgraded all plugins
+- switched logging to SLF4J 2
 
 ## [1.1.0] - 2023-05-23
 ### Changed
